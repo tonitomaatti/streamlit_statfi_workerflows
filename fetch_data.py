@@ -1,7 +1,9 @@
 import requests
 import pandas as pd
 from io import StringIO
+import streamlit as st
 
+@st.cache(suppress_st_warning=True)
 def fetch_siirtymat_tyomarkkinoilla():
     body = {
         "query": [

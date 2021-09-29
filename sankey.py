@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import streamlit as st
 
+
 @st.cache(suppress_st_warning=True)
 def generate_sankey_data(df):
     # Lasketaan nodejen alkupaikat
@@ -91,6 +92,7 @@ def generate_sankey_data(df):
 
     return labels, node_colors, source, target, value, link_colors
 
+
 @st.cache(suppress_st_warning=True)
 def generate_sankey_figure(df):
     labels, node_colors, source, target, value, link_colors = generate_sankey_data(df)
@@ -109,8 +111,11 @@ def generate_sankey_figure(df):
         ]
     )
 
+    # fig.update_layout(
+    #    title_text="Työvoiman liikkeet kvartaalista x kvartaaliin y", font_size=10
+    # )
     fig.update_layout(
-        title_text="Työvoiman liikkeet kvartaalista x kvartaaliin y", font_size=10
+        margin=dict(l=0, r=0, t=0, b=0),
     )
 
     return fig

@@ -3,6 +3,7 @@ import pandas as pd
 from io import StringIO
 import streamlit as st
 
+
 @st.cache(suppress_st_warning=True)
 def fetch_siirtymat_tyomarkkinoilla():
     body = {
@@ -30,12 +31,13 @@ def fetch_siirtymat_tyomarkkinoilla():
         "response": {"format": "csv"},
     }
 
-    r = requests.post('https://pxnet2.stat.fi:443/PXWeb/api/v1/fi/Kokeelliset_tilastot/tyvir/koeti_tyvir_pxt_12aj.px', json=body)
+    r = requests.post(
+        "https://pxnet2.stat.fi:443/PXWeb/api/v1/fi/Kokeelliset_tilastot/tyvir/koeti_tyvir_pxt_12aj.px",
+        json=body,
+    )
     print(r)
 
     df = pd.read_csv(StringIO(r.text), sep=",", index_col="Vuosineljännes")
     df = df.drop(columns=["Sukupuoli"])
 
     return df
-
-

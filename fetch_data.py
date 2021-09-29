@@ -35,9 +35,12 @@ def fetch_siirtymat_tyomarkkinoilla():
         "https://pxnet2.stat.fi:443/PXWeb/api/v1/fi/Kokeelliset_tilastot/tyvir/koeti_tyvir_pxt_12aj.px",
         json=body,
     )
-    print(r)
 
     df = pd.read_csv(StringIO(r.text), sep=",", index_col="Vuosineljännes")
     df = df.drop(columns=["Sukupuoli"])
+
+    # Haamu Q alkuun:
+    df.loc["2007Q4"] = [0 for i in range(0, len(df.columns))]
+    df = df.sort_index()
 
     return df

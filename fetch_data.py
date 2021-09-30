@@ -37,7 +37,9 @@ def fetch_siirtymat_tyomarkkinoilla():
     )
 
     df = pd.read_csv(StringIO(r.text), sep=",", index_col="Vuosineljännes")
-    df = df.drop(columns=["Sukupuoli"])
+    df = df.drop(
+        columns=["Sukupuoli", "Työpaikkaa vaihtaneet työlliset, 1000 henkilöä"]
+    )
 
     # Haamu Q alkuun:
     df.loc["2007Q4"] = [0 for i in range(0, len(df.columns))]

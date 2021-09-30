@@ -1,12 +1,15 @@
 import streamlit as st
 import numpy as np
 import plotly
+import plotly.express as px
+import altair as alt
 
 from fetch_data import fetch_siirtymat_tyomarkkinoilla
 from sankey import generate_sankey_figure
 
 st.set_page_config(layout="wide")
 
+st.image("tk_logo_fi.gif")
 st.title("Työvoimavirrat 2007Q4 - 2019Q3")
 st.text("Siirtymät työmarkkinoilla edellisestä vuosineljänneksestä, 15-74 -vuotiaat")
 
@@ -32,8 +35,6 @@ fig = generate_sankey_figure(
     df_to_display, list(df.iloc[df_start - 1 : end + 1].index.values)
 )
 
-# print(fig.__dict__)
-# st.write(range_slider)
 
 col1.plotly_chart(fig, use_container_width=True)
 
@@ -78,4 +79,5 @@ col2.metric(
     delta_color="inverse",
 )
 
-# st.write(df_to_display)
+with st.expander("Selaa dataa"):
+    st.write(df_to_display)

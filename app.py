@@ -7,7 +7,8 @@ from sankey import generate_sankey_figure
 
 st.set_page_config(layout="wide")
 
-st.title("Siirtymät työmarkkinoilla")
+st.title("Työvoimavirrat 2007Q4 - 2019Q3")
+st.text("Siirtymät työmarkkinoilla edellisestä vuosineljänneksestä, 15-74 -vuotiaat")
 
 df = fetch_siirtymat_tyomarkkinoilla()
 
@@ -62,6 +63,7 @@ tyolliset_change = tyolliset_end - tyolliset_start
 tyottomat_change = tyottomat_end - tyottomat_start
 tyov_ulkop_change = tyov_ulkop_end - tyov_ulkop_start
 
+col2.markdown("**Virtojen\nloppumäärät\n(1000 henkilöä)**")
 col2.metric(label="Työlliset", value=str(tyolliset_end), delta=str(tyolliset_change))
 col2.metric(
     label="Työvoiman ulkopuolella",

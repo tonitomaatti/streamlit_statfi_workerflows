@@ -1,8 +1,4 @@
 import streamlit as st
-import numpy as np
-import plotly
-import plotly.express as px
-import altair as alt
 
 from fetch_data import fetch_siirtymat_tyomarkkinoilla
 from sankey import generate_sankey_figure

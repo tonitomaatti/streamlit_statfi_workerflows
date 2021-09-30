@@ -78,4 +78,4 @@ col2.metric(
     delta_color="inverse",
 )
 
-st.write(df_to_display)
+# st.write(df_to_display)
